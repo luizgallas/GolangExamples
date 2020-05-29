@@ -10,7 +10,7 @@ const pi = 3.14
 // podem ser usadas com consignado para representar enumerações
 const (
 	segunda = "Segunda-feira"
-	terca   = "Terã-feira"
+	terca   = "Terça-feira"
 	quarta  = "Quarta-feira"
 	quinta  = "Quinta-feira"
 	sexta   = "Sexta-feira"

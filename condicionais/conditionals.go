@@ -8,6 +8,8 @@ func main() {
 	sub := a - b
 
 	// No if os parênteses são opcionais, porém a boa prática é não utilizar
+	// A chave de abertura precisa vir ao lado da expressão
+	// palavra reservada else ou else if precisa vir ao lado a chave de fechamento
 	if sub < 0 {
 		fmt.Println("Negativo")
 	} else {
