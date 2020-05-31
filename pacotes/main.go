@@ -8,8 +8,9 @@ import (
 	// As importações são relativas a pasta "src" presente nas pastas
 	// definidas na GOPATH, por isso devemos incluir o nome do projeto
 	// na importação
-	"Golang_Example_Codes/pacotes/hello"
+	"GolangExamples/pacotes/hello"
 	"fmt"
+	"os"
 
 	// Renomeação de pacotes ao importar
 	so "os"
