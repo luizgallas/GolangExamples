@@ -1,4 +1,4 @@
-package funcoes_e_mod_de_acesso
+package main
 
 import "fmt"
 
@@ -53,4 +53,29 @@ func calculaSoma() func(int) int {
 		soma += x
 		return soma
 	}
+}
+
+func main() {
+
+	// Função com um retorno
+	fmt.Println(Maior(10, 7))
+
+	// Função sem retorno
+	exibeOlaMundo()
+
+	// Retorna dois valores que são atribuidos as variáveis de forma posicional
+	soma, iteracoes := executaAteASomaSerMaiorQue100(10)
+	fmt.Printf("Soma: %d\nIteracoes: %d\n", soma, iteracoes)
+
+	// Caso eu não queria usar um deles posso atribuir o resultado
+	// ao símbolo _, dessa forma aquele valor será descartado
+	_, iteracoes2 := executaAteASomaSerMaiorQue100Ex2(12)
+	fmt.Printf("Iteracoes: %d\n", iteracoes2)
+
+	// O retorno da função CalculaSoma é outra função, logo calculo é uma função
+	// podemos chamar calculo passando o parâmetro solicitado na declaração da função
+	// anonima dentro de calculaSoma
+	calculo := calculaSoma()
+	calculo(10)
+
 }
