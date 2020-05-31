@@ -30,8 +30,10 @@ func main() {
 		fmt.Println(soma)
 	}
 
+	// Podemos usar formatação de string para exibir o valor atual da variável
+	// palavra e seu índice
 	for indice, palavra := range slice {
-		fmt.Println(palavra, indice)
+		fmt.Printf("A palavra %s está no índice %d do slice\n", palavra, indice)
 	}
 
 	// Ao adicionar novos valores em uma slice(ou matriz) é gerada uma nova lista contendo os valores
