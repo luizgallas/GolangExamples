@@ -4,16 +4,14 @@ import "fmt"
 
 func main() {
 
-	a, b := 10, 20
-	sub := a - b
-
 	// No if os parênteses são opcionais, porém a boa prática é não utilizar
 	// A chave de abertura precisa vir ao lado da expressão
 	// palavra reservada else ou else if precisa vir ao lado a chave de fechamento
-	if sub < 0 {
-		fmt.Println("Negativo")
+	idade := 58
+	if idade >= 60 {
+		fmt.Println("Está no grupo de risco")
 	} else {
-		fmt.Println("Positivo")
+		fmt.Println("Não está no grupo de risco")
 	}
 
 	sexo := "M"
