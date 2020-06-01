@@ -2,8 +2,14 @@ package main
 
 // Pacote "main" é o pacote principal de todo programa em Go, que gera um executável
 
+// Instruções para compilar e rodar o comando:
+// Compilar gerando executável: go build
+// Compilar sem gerar executável: go run {nome da pasta source ou .}
+// O GO irá buscar o package main dentro do código e executar a partir dele
+
 // Importação consignada, onde os imports são envolvidos dentro dos parenteses.
 // A quebra de linha nos pareteses é obrigatória
+// Serve para puxar funções, variáveis e constantes de outros pacotes
 import (
 	// As importações são relativas a pasta "src" presente nas pastas
 	// definidas na GOPATH, por isso devemos incluir o nome do projeto
