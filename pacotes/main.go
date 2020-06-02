@@ -10,6 +10,10 @@ package main
 // Importação consignada, onde os imports são envolvidos dentro dos parenteses.
 // A quebra de linha nos pareteses é obrigatória
 // Serve para puxar funções, variáveis e constantes de outros pacotes
+
+// Toda importação que não for usada gera um erro de compilação, isso existe para contornar
+// o problema que a Google enfretava com C++ a respeito da duplicação de pacotes e compilação de pacotes
+// não utilizados, o que torna o build muito lento
 import (
 	// As importações são relativas a pasta "src" presente nas pastas
 	// definidas na GOPATH, por isso devemos incluir o nome do projeto
