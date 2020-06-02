@@ -10,15 +10,16 @@ import (
 type CursorType struct {
 	Value    string
 	Position int
+	Writing bool
 }
 
 // Algumas constantes para definir tempos de animações como
 // o tempo que o cursor leva para piscar, o tempo para simular
 // a escrita, etc...
 const (
-	blinkRate = 300  // animação do cursor
+	blinkRate = 400  // animação do cursor
 	writeTime = 56   // animação de escrita
-	eraseTime = 10   // animação apagar
+	eraseTime = 16   // animação apagar
 	waitTime  = 3000 // espera após exibir todo o texto
 )
 
@@ -38,7 +39,7 @@ func main() {
 	runeText := []rune(text)
 
 	// cria uma instancia do CursorType para armazenar informações do cursor
-	cursor := &CursorType{"|", 0}
+	cursor := &CursorType{"|", 0, false}
 
 	// cria um canal para atualizar o terminal sempre que necessário
 	update := make(chan bool)
@@ -51,12 +52,17 @@ func main() {
 		// cria um laço infinito
 		for {
 			if c.Value == "|" {
-				c.Value = " "
+				if !c.Writing {
+				    c.Value = " "
+				}
 			} else {
 				c.Value = "|"
 			}
-			// direciona o valor true para o canal update apenas para atualizar o terminal
-			update <- true
+			
+			if !c.Writing {
+			    // direciona o valor true para o canal update apenas para atualizar o terminal
+			    update <- true
+			}
 
 			// pausa a execução desta goroutine para que o cursor seja atualizado novamente
 			// apenas no intervalo de tempo desejado
@@ -81,27 +87,24 @@ func main() {
 		}
 	}(cursor)
 
-	// flag para determinar se o texto está sendo escrito ou apagado
-	writing := true
-
 	// cria um loop infinito para alterar o texto a ser exibido
 	for {
 		// Se a posição do cursor chegou ao final do texto, define a flag writing para false
 		// e chama o time.Sleep para aguardar o tempo de espera definido na constante waitTime.
 		// Observe que estamos na goroutine principal
 		if cursor.Position == len(runeText) {
-			writing = false
+			cursor.Writing = false
 			time.Sleep(waitTime * time.Millisecond)
 		} else if cursor.Position == 0 {
 			// Se o cursor chegou ao início, define a flag writing como true
-			writing = true
+			cursor.Writing = true
 		}
 
 		// Se estiver escrevendo, incrementa a posição do cursor e aguarda o tempo de escrita
-		if writing {
+		if cursor.Writing {
 			cursor.Position++
 			time.Sleep(writeTime * time.Millisecond)
-		} else {
+		} else if cursor.Position > 0 {
 			// Se estiver apagando, decrementa o cursor e aguarda o tempo de apagar
 			cursor.Position--
 			time.Sleep(eraseTime * time.Millisecond)
